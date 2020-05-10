@@ -4,10 +4,23 @@
         <header>
             <h1>{{ .Title }}</h1>
         </header>
+        {{ partial "articleInfoFull.html" . }}
+
+        {{ $page := . }}
+        {{- with $page.Params.image -}}
+            {{- $image := . -}}
+            {{- with $page.Site.GetPage "section" "images" -}}
+                {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $image ) -}}
+                    <div class="main-img">
+                        <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}" >
+                    </div>
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+
         <div class="content">
             {{ .Content }}
         </div>
-        {{ partial "articleInfoFull.html" . }}
     </article>
     {{ if .Site.DisqusShortname }}
         {{ template "_internal/disqus.html" . }}

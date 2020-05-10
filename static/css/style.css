@@ -20,7 +20,6 @@ body {
 
 /* Footer */
 
-
 article,
 aside,
 details,
@@ -71,7 +70,7 @@ main {
 
 /* Headers */
 h1 {
-    font-size: 1.35em;
+    font-size: 2.5em;
 }
 
 h2 {
@@ -97,13 +96,11 @@ a:hover {
 a:hover,
 a:focus {
     color: #a31d1d;
-    border-bottom: 1px solid rgba(163, 29, 29, .5);
 }
 
 a:active {
     color: #a31d1d;
     opacity: 0.9;
-    border-bottom: 1px solid rgba(163, 29, 29, .5);
 }
 
 a.skip-main {
@@ -202,12 +199,6 @@ header h1 {
     font-weight: normal;
 }
 
-header h2 {
-    font-size: 1em;
-    margin: 0;
-    font-weight: normal;
-}
-
 header nav {
     margin-top: 1em;
     max-width: 100%;
@@ -229,27 +220,55 @@ header a {
 
 /* Pages */
 main h1 {
-    margin-top: 1em;
     font-weight: normal;
     line-height: 1.1em;
     margin-bottom: 0.5em;
     font-weight: 600;
 }
 
-.post-short-list:first-of-type {
-    margin-top: 1em;
+/* List */
+main .article-list h1 {
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid #f1f1f1;
+    margin-bottom: 1em;
 }
 
-/* Articles */
+.post-short-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
 
+.post-short-list .media img {
+    border-radius: 0.5em;
+}
+
+.post-short-list .desc {
+    margin-left: 2em;
+}
+
+.post-short-list h2 {
+    font-size: 1.8em;
+    margin: 0;
+    font-weight: normal;
+}
+
+.post-short-list .article-info {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+
+
+/* Articles */
 article:not(:last-of-type) {
     border-bottom: thin solid #f1f1f1;
     padding-bottom: 2em;
 }
 
 article header h1 {
-    font-size: 1.35em;
-    line-height: 1.1em;
+    font-size: 1.5em;
+    line-height: 1.3em;
+    margin-top: 1em;
     margin-bottom: 0.5em;
     font-weight: 600;
 }
@@ -260,10 +279,17 @@ article header h1 a {
     color: #333;
 }
 
+article .main-img {
+    margin-top: 2em;
+}
+
+article .content {
+    margin-top: 2em;
+}
+
 .article-info {
-    font-size: 0.75em;
+    font-size: 1em;
     color: grey;
-    margin-top: 1em;
 }
 
 .article-info a {
@@ -272,11 +298,6 @@ article header h1 a {
 
 .article-info a:hover {
     color: #a31d1d;
-}
-
-.post-short-list .article-info {
-    margin-top: 0;
-    margin-bottom: 1.5em;
 }
 
 .article-taxonomies {
@@ -413,20 +434,8 @@ article img {
         font-size: 14px;
     }
 
-    header {
-        display: block;
-    }
-
     .site-header {
         text-align: center;
-    }
-
-    header nav {
-        margin-top: 1em;
-        max-width: 100%;
-        text-align: center;
-        background: #fafafa;
-        padding: 0.5em 0;
     }
 
     header nav a:first-of-type {
