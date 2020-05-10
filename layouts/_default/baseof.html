@@ -7,7 +7,7 @@
 </head>
 <body>
     <a class="skip-main" href="#main">{{ i18n "skipToContent" | humanize }}</a>
-    <div class="container">
+    <div class="container{{ if .IsHome }} home{{ end}}">
         <header> 
             {{ block "header" . }}
                 {{ partial "header.html" . }}
