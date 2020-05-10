@@ -15,11 +15,9 @@
                 {{- with $page.Site.GetPage "section" "images" -}}
                     {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $image ) -}}
                         {{- $image := .Fill "300x300" -}}
-                        <div class="media">
-                            <a href="{{ $page.RelPermalink }}" class="d-block">
-                                <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="150">
-                            </a>
-                        </div>
+                        <a class="media" href="{{ $page.RelPermalink }}">
+                            <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="150">
+                        </a>
                     {{- end -}}
                 {{- end -}}
             {{- end -}}
