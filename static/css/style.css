@@ -1,5 +1,6 @@
 /* Basic */
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 html {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -373,8 +374,11 @@ article img {
 }
 
 .title {
+    color: #a31d1d;
+    font-family: 'Lobster', cursive;
     font-size: 3em;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .home-img {
@@ -388,6 +392,7 @@ article img {
 .subtitle {
     color: grey;
     font-weight: normal;
+    margin-top: 0.5em;
 }
 
 /* Pagination */
