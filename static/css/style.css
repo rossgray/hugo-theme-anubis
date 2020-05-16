@@ -1,9 +1,10 @@
 /* Basic */
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 html {
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
@@ -221,10 +222,9 @@ header a {
 
 /* Pages */
 main h1 {
-    font-weight: normal;
+    font-weight: 700;
     line-height: 1.1em;
     margin-bottom: 0.5em;
-    font-weight: 600;
 }
 
 /* List */
@@ -276,7 +276,7 @@ article header h1 {
     line-height: 1.3em;
     margin-top: 1em;
     margin-bottom: 0.5em;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 article header h1 a {
@@ -338,12 +338,21 @@ article .content {
     margin-right: 1em;
 }
 
+article figure {
+    margin: 2em 0;
+}
+
 article img {
     max-width: 100%;
     display: block;
     height: auto;
     margin: 0 auto .5em;
     border-radius: 0.5em;
+}
+
+article figcaption {
+    text-align: center;
+    font-style: italic;
 }
 
 .read-more {

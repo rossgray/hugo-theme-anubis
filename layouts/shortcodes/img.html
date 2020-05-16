@@ -1,0 +1,30 @@
+{{/* Creates a figure from given image and text, resizing to default size */}}
+
+{{- $imageName := .Get 0 -}}
+{{- $text := .Get 1 -}}
+{{- $useCaption := .Get 2 | default true -}}
+
+{{/* We hardcode these for all standard images */}}
+{{ $command := "Fit"}}
+{{ $options := "1000x1000" }}
+
+{{- $images := .Page.Site.GetPage "section" "images" -}}
+{{- $original := $images.Resources.GetMatch (strings.TrimPrefix "/images/" $imageName ) -}}
+
+
+{{ if eq $command "Fit"}}
+{{ .Scratch.Set "image" ($original.Fit $options) }}
+{{ else if eq $command "Resize"}}
+{{ .Scratch.Set "image" ($original.Resize $options) }}
+{{ else if eq $command "Fill"}}
+{{ .Scratch.Set "image" ($original.Fill $options) }}
+{{ else }}
+{{ errorf "Invalid image processing command: Must be one of Fit, Fill or Resize."}}
+{{ end }}
+{{ $image := .Scratch.Get "image" }}
+<figure>
+    <img src="{{ $image.RelPermalink }}" alt="{{ $text }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+    {{- if $useCaption -}}
+        <figcaption>{{- $text -}}</figcaption>
+    {{- end -}}
+</figure>

@@ -8,12 +8,13 @@
 
         {{ $page := . }}
         {{- with $page.Params.image -}}
-            {{- $image := . -}}
+            {{- $imageName := . -}}
             {{- with $page.Site.GetPage "section" "images" -}}
-                {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $image ) -}}
-                    <div class="main-img">
-                        <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}" >
-                    </div>
+                {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $imageName ) -}}
+                    {{ $image := .Fit "1000x1000" }}
+                    <figure>
+                        <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+                    </figure>
                 {{- end -}}
             {{- end -}}
         {{- end -}}
@@ -21,7 +22,9 @@
         <div class="content">
             {{ .Content }}
         </div>
+
     </article>
+
     {{ if .Site.DisqusShortname }}
         {{ template "_internal/disqus.html" . }}
     {{ end }}
