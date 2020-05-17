@@ -11,13 +11,19 @@
             {{ $page := . }}
             <div class="post-short-list">
             {{- with $page.Params.image -}}
-                {{- $image := . -}}
-                {{- with $page.Site.GetPage "section" "images" -}}
-                    {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $image ) -}}
-                        {{- $image := .Fill "300x300" -}}
-                        <a class="media" href="{{ $page.RelPermalink }}">
-                            <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="150">
-                        </a>
+                {{- $imageSrc := . -}}
+                {{- with $page.Site.Params.cloudinary -}}
+                    <a class="media" href="{{ $page.RelPermalink }}">
+                        <img src="{{ .baseURL }}{{ .thumbnailTransform }}{{ $imageSrc }}" alt="{{ $page.Title }}" width="150">
+                    </a>
+                {{- else -}}
+                    {{- with $page.Site.GetPage "section" "images" -}}
+                        {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $imageSrc ) -}}
+                            {{- $image := .Fill "300x300" -}}
+                            <a class="media" href="{{ $page.RelPermalink }}">
+                                <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="150">
+                            </a>
+                        {{- end -}}
                     {{- end -}}
                 {{- end -}}
             {{- end -}}

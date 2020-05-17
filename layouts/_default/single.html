@@ -8,13 +8,19 @@
 
         {{ $page := . }}
         {{- with $page.Params.image -}}
-            {{- $imageName := . -}}
-            {{- with $page.Site.GetPage "section" "images" -}}
-                {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $imageName ) -}}
-                    {{ $image := .Fit "1000x1000" }}
-                    <figure>
-                        <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
-                    </figure>
+            {{- $imageSrc := . -}}
+            {{- with $page.Site.Params.cloudinary -}}
+                <figure>
+                    <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $page.Title }}" >
+                </figure>
+            {{- else -}}
+                {{- with $page.Site.GetPage "section" "images" -}}
+                    {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" $imageSrc ) -}}
+                        {{ $image := .Fit "1000x1000" }}
+                        <figure>
+                            <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+                        </figure>
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
         {{- end -}}
