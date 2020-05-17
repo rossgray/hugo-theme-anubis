@@ -444,6 +444,9 @@ article figcaption {
     h2 {
         font-size: 1.2em;
     }
+    h3 {
+        font-size: 1.1em;
+    }
 
     .main-wrapper {
         margin: 0;
@@ -473,6 +476,11 @@ article figcaption {
 
     header nav a {
         margin-left: 5%;
+    }
+
+    .home-img {
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 
 }
