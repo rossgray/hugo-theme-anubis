@@ -1,30 +1,39 @@
-{{/* Creates a figure from given image and text, resizing to default size */}}
+{{/* Creates a figure from given image and text, resizing to default size. Uses cloudinary if set in site params, otherwise uses local images */}}
 
-{{- $imageName := .Get 0 -}}
+{{- $imageSrc := .Get 0 -}}
 {{- $text := .Get 1 -}}
 {{- $useCaption := .Get 2 | default true -}}
 
-{{/* We hardcode these for all standard images */}}
-{{ $command := "Fit"}}
-{{ $options := "1000x1000" }}
+{{- with .Page.Site.Params.cloudinary -}}
+    <figure>
+        <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $text }}" >
+        {{- if $useCaption -}}
+            <figcaption>{{- $text -}}</figcaption>
+        {{- end -}}
+    </figure>
+{{- else -}}
+    {{/* We hardcode these for all standard images */}}
+    {{ $command := "Fit"}}
+    {{ $options := "1000x1000" }}
 
-{{- $images := .Page.Site.GetPage "section" "images" -}}
-{{- $original := $images.Resources.GetMatch (strings.TrimPrefix "/images/" $imageName ) -}}
+    {{- $images := .Page.Site.GetPage "section" "images" -}}
+    {{- $original := $images.Resources.GetMatch (strings.TrimPrefix "/images/" $imageSrc ) -}}
 
 
-{{ if eq $command "Fit"}}
-{{ .Scratch.Set "image" ($original.Fit $options) }}
-{{ else if eq $command "Resize"}}
-{{ .Scratch.Set "image" ($original.Resize $options) }}
-{{ else if eq $command "Fill"}}
-{{ .Scratch.Set "image" ($original.Fill $options) }}
-{{ else }}
-{{ errorf "Invalid image processing command: Must be one of Fit, Fill or Resize."}}
+    {{ if eq $command "Fit"}}
+    {{ .Scratch.Set "image" ($original.Fit $options) }}
+    {{ else if eq $command "Resize"}}
+    {{ .Scratch.Set "image" ($original.Resize $options) }}
+    {{ else if eq $command "Fill"}}
+    {{ .Scratch.Set "image" ($original.Fill $options) }}
+    {{ else }}
+    {{ errorf "Invalid image processing command: Must be one of Fit, Fill or Resize."}}
+    {{ end }}
+    {{ $image := .Scratch.Get "image" }}
+    <figure>
+        <img src="{{ $image.RelPermalink }}" alt="{{ $text }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+        {{- if $useCaption -}}
+            <figcaption>{{- $text -}}</figcaption>
+        {{- end -}}
+    </figure>
 {{ end }}
-{{ $image := .Scratch.Get "image" }}
-<figure>
-    <img src="{{ $image.RelPermalink }}" alt="{{ $text }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
-    {{- if $useCaption -}}
-        <figcaption>{{- $text -}}</figcaption>
-    {{- end -}}
-</figure>
