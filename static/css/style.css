@@ -252,6 +252,7 @@ main .article-list h1 {
 
 .post-short-list .desc {
     margin-left: 2em;
+    flex-shrink: 2;
 }
 
 .post-short-list h2 {
@@ -443,7 +444,7 @@ article figcaption {
         font-size: 1.5em;
     }
     h2 {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     h3 {
         font-size: 1.1em;
@@ -484,4 +485,7 @@ article figcaption {
         margin-bottom: 1em;
     }
 
+    .post-short-list .desc {
+        margin-left: 1em;
+    }
 }
