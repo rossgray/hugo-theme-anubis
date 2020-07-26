@@ -6,7 +6,9 @@
 
 {{- with .Page.Site.Params.cloudinary -}}
     <figure>
-        <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $text }}" >
+        <a href="{{ .baseURL }}{{ $imageSrc }}">
+            <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $text }}" >
+        </a>
         {{- if $useCaption -}}
             <figcaption>{{- $text -}}</figcaption>
         {{- end -}}

@@ -11,7 +11,9 @@
             {{- $imageSrc := . -}}
             {{- with $page.Site.Params.cloudinary -}}
                 <figure>
-                    <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $page.Title }}" >
+                    <a href="{{ .baseURL }}{{ $imageSrc }}">
+                        <img src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $page.Title }}" >
+                    </a>
                 </figure>
             {{- else -}}
                 {{- with $page.Site.GetPage "section" "images" -}}
