@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+    <div class="center">
+
+        <h1 class="title">{{ .Site.Title }}</h1>
+        {{ with .Site.Params.subtitle }}
+        <h3 class="subtitle">{{ . }}</h3>
+        {{ end }}
+
+        {{ with .Site.Params.homeImage }}
+            {{- $imageSrc := . -}}
+            {{- with $.Site.Params.cloudinary -}}
+                <img class="home-img" src="{{ .baseURL }}{{ .defaultTransform }}{{ $imageSrc }}" alt="{{ $.Site.Title }}" />
+            {{- else -}}
+                <img class="home-img" src="{{ . }}" alt="{{ $.Site.Title }}" />
+            {{- end -}}
+        {{ end }}
+
+        <div class="homepage-content">
+            {{ .Content }}
+        </div>
+
+    </div>
+
+{{ end }}
